@@ -24,6 +24,15 @@ Outputting values of different types, working with Slices, aliasing functions.
 
 `go run loops.go`
 
+## If-Else
+
+`go run if-else.go`
+
+## Pre-commit
+
+### Format all go files
+`gofmt -w *.go`
+
 ## References
 
 [Go By Example](https://www.gobyexample.com)

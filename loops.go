@@ -8,7 +8,7 @@ func p(s ...interface{}) {
 
 /*
 	for is Go’s only looping construct.
- */
+*/
 
 func main() {
 	pnl := fmt.Println
@@ -30,7 +30,7 @@ func main() {
 	}
 	pnl()
 
-	for k := 0; k < 16; k+= 3 {
+	for k := 0; k < 16; k += 3 {
 
 		// breaking the loop
 		if 0 == k%12 && k > 0 {
@@ -42,7 +42,6 @@ func main() {
 			p("Skipping", k)
 			continue
 		}
-
 
 		p(k)
 	}
@@ -63,7 +62,7 @@ func main() {
 
 	pnl()
 
-	for m := 9; m >= 0; m -- {
+	for m := 9; m >= 0; m-- {
 		p(m)
 	}
 
