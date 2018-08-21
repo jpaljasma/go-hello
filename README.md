@@ -30,6 +30,12 @@ Outputting values of different types, working with Slices, aliasing functions.
 
 `go run if-else.go`
 
+There is no [ternary if](https://en.wikipedia.org/wiki/%3F:) `?:` in go
+
+## Switch
+
+`go run switch.go`
+
 ## Pre-commit
 
 ### Format all go files
