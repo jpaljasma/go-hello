@@ -136,9 +136,11 @@ func SieveOfEratosthenes(value int) []int {
 	f := make([]bool, value)
 
 	//ret := make([]int, 0)
-	// allocate return array cap - 78,498 primes in 1M
+	// We will allocate return array cap:
+	// You can Approximate pi(x) with x/(log x - 1)
 	// performance improvement: 1 million - 7ms VS 4ms
-	ret := make([]int, 0, int(float64(value)/12.739178))
+	pix := int(float64(value) / (math.Log(float64(value)) - 1))
+	ret := make([]int, 0, pix)
 
 	for i := 2; i <= sqVal; i++ {
 		if f[i] == false {
