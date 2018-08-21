@@ -6,6 +6,8 @@ A simple introduction to Go. Creates a web server in port 8080. Does some header
 
 `go run go-hello.go`
 
+Then open http://localhost:8080 to see the output
+
 ## Values
 
 Outputting values of different types, working with Slices, aliasing functions.
