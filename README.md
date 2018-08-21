@@ -20,6 +20,10 @@ Outputting values of different types, working with Slices, aliasing functions.
 
 `go run constants.go`
 
+## Loops
+
+`go run loops.go`
+
 ## References
 
 [Go By Example](https://www.gobyexample.com)
