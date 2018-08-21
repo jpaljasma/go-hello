@@ -36,6 +36,13 @@ There is no [ternary if](https://en.wikipedia.org/wiki/%3F:) `?:` in go
 
 `go run switch.go`
 
+## Arrays
+
+Closer look at the Arrays in Golang, + some of the internals like array cap, make, and append.
+And, last but not least, calculate prime numbers.
+
+`go run arrays.go`
+
 ## Pre-commit
 
 ### Format all go files
