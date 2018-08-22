@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"sort"
 	"time"
 )
 
@@ -111,6 +112,72 @@ func main() {
 	}
 
 	fmt.Println()
+
+	a2 := []float64{1.99, 1, 2, 7, 3, -2, 4, 5, 6.789}
+	a3 := []float64{5, 11, 12, 4, 8, 21}
+	a4 := []float64{9, 13, 9, 11, 9, 13, 11, 9, 10, 8, 11}
+	a5 := []float64{math.Phi}
+
+	p("array sum: ", arraySum(a2))
+	p("array mean: ", arrayAvg(a2))
+	p("array geometric mean: ", geometricMean(a3))
+
+	p("median", a3, arrayMedian(a3))
+	p("median", a4, arrayMedian(a4))
+	p("median", a5, arrayMedian(a5))
+
+}
+
+func arrayMedian(a []float64) float64 {
+	l := len(a)
+
+	sort.Float64s(a)
+
+	if 0 == l {
+		return math.NaN()
+	} else if 1 == l {
+		// median value is the same as your single number
+		return a[0]
+	} else if 0 == l%2 {
+		// for even numbers we take median of 2 middle numbers
+		return arrayAvg(a[l/2-1 : l/2+1])
+	} else {
+		// for odd we take the midpoint
+		return a[l/2]
+	}
+}
+
+func geometricMean(a []float64) float64 {
+	l := len(a)
+	if 0 == l {
+		return math.NaN()
+	}
+	// product of all numbers
+	var p float64
+	for _, n := range a {
+		if 0 == p {
+			p = n
+		} else {
+			p *= n
+		}
+	}
+
+	// return geometric mean
+	return math.Pow(p, 1/float64(l))
+}
+
+func arrayAvg(a []float64) float64 {
+	l := len(a)
+	return arraySum(a) / float64(l)
+}
+
+func arraySum(a []float64) float64 {
+	s := 0.0
+
+	for _, n := range a {
+		s += n
+	}
+	return s
 }
 
 func IsPrime(value int) bool {
