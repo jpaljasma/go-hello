@@ -39,7 +39,7 @@ There is no [ternary if](https://en.wikipedia.org/wiki/%3F:) `?:` in go
 ## Arrays
 
 Closer look at the Arrays in Golang, + some of the internals like array cap, make, and append.
-And, last but not least, calculate prime numbers.
+Calculating prime numbers. Some stats like mean, median.
 
 `go run arrays.go`
 
