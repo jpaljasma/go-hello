@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
 	"log"
 	"math"
@@ -202,8 +203,8 @@ func main() {
 	}
 
 	type DoublyLinkedList struct {
-		First *Node // points to first node of list
-		Last  *Node // points to last node of list
+		First *Node // points to first node of linkedLIst
+		Last  *Node // points to last node of linkedLIst
 	}
 
 	var insertAfter = func(list *DoublyLinkedList, node *Node, newNode *Node) {
@@ -264,21 +265,21 @@ func main() {
 		}
 	}
 
-	var list = DoublyLinkedList{}
+	var linkedLIst = DoublyLinkedList{}
 
-	insertEnd(&list, &Node{Data: "Agent"})
-	insertEnd(&list, &Node{Data: "007"})
-	insertEnd(&list, &Node{Data: "Bond"})
+	insertEnd(&linkedLIst, &Node{Data: "Agent"})
+	insertEnd(&linkedLIst, &Node{Data: "007"})
+	insertEnd(&linkedLIst, &Node{Data: "Bond"})
 
 	// we will use remove method
 	nodeToRemove := Node{Data: "James"}
-	insertBeginning(&list, &nodeToRemove)
+	insertBeginning(&linkedLIst, &nodeToRemove)
 
 	// TODO: https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
-	//insertEnd(&list, &nodeToRemove)
+	//insertEnd(&linkedLIst, &nodeToRemove)
 
-	p("First: ", list.First.Data)
-	p("Last:  ", list.Last.Data)
+	p("First: ", linkedLIst.First.Data)
+	p("Last:  ", linkedLIst.Last.Data)
 
 	p()
 	p("Forward")
@@ -286,7 +287,7 @@ func main() {
 	visited := make(map[*Node]bool)
 
 	// Traversing forward
-	node := list.First
+	node := linkedLIst.First
 	for nil != node {
 		if visited[node] {
 			p("Cycle detected:", node)
@@ -301,7 +302,7 @@ func main() {
 	p()
 	p("Backwards")
 	// Traversing backward
-	node = list.Last
+	node = linkedLIst.Last
 	for nil != node {
 		// do something with node.Data
 		p("Node: ", node.Data)
@@ -311,11 +312,29 @@ func main() {
 	p()
 	p("Removal")
 	// removal
-	p("First before: ", list.First.Data)
-	removeNode(&list, &nodeToRemove)
-	p("First after : ", list.First.Data)
+	p("First before: ", linkedLIst.First.Data)
+	removeNode(&linkedLIst, &nodeToRemove)
+	p("First after : ", linkedLIst.First.Data)
 
-	// TODO: Go has linked list implemented https://golang.org/pkg/container/list/
+	p("container/list")
+	// Create a new linkedLIst and put some numbers in it.
+	l := list.New()
+	e4 := l.PushBack(4)
+	e1 := l.PushFront(1)
+	l.InsertBefore(3, e4)
+	l.InsertAfter(2, e1)
+
+	// Iterate through linkedLIst and print its contents.
+	for e := l.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value)
+	}
+
+	p("container/list in reverse")
+	// Iterate through linkedLIst in reverse
+	for e := l.Back(); e != nil; e = e.Prev() {
+		fmt.Println(e.Value)
+	}
+
 }
 
 func arrayMedian(a []float64) float64 {
