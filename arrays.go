@@ -196,14 +196,14 @@ func main() {
 	// @see https://en.wikipedia.org/wiki/Doubly_linked_list
 	// Doubly Linked List Node
 	type Node struct {
-		Next 	*Node	// A reference to the next node
-		Prev	*Node	// A reference to the previous node
-		Data 	interface{}		// Data or a reference to data
+		Next *Node       // A reference to the next node
+		Prev *Node       // A reference to the previous node
+		Data interface{} // Data or a reference to data
 	}
 
 	type DoublyLinkedList struct {
-		First	*Node	// points to first node of list
-		Last 	*Node	// points to last node of list
+		First *Node // points to first node of list
+		Last  *Node // points to last node of list
 	}
 
 	var insertAfter = func(list *DoublyLinkedList, node *Node, newNode *Node) {
@@ -233,7 +233,7 @@ func main() {
 	var insertBeginning = func(list *DoublyLinkedList, newNode *Node) {
 		if nil == list.First {
 			list.First = newNode
-			list.Last  = newNode
+			list.Last = newNode
 			newNode.Prev = nil
 			newNode.Next = nil
 		} else {
@@ -266,12 +266,12 @@ func main() {
 
 	var list = DoublyLinkedList{}
 
-	insertEnd(&list, &Node{ Data: "Agent" })
-	insertEnd(&list, &Node{ Data: "007" })
-	insertEnd(&list, &Node{ Data: "Bond" })
+	insertEnd(&list, &Node{Data: "Agent"})
+	insertEnd(&list, &Node{Data: "007"})
+	insertEnd(&list, &Node{Data: "Bond"})
 
 	// we will use remove method
-	nodeToRemove := Node{ Data: "James" }
+	nodeToRemove := Node{Data: "James"}
 	insertBeginning(&list, &nodeToRemove)
 
 	// TODO: https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
