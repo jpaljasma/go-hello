@@ -47,7 +47,10 @@ We also do some fun like calculating prime numbers, and some stats like mean and
 ### References
 
 [Go Maps in Action](https://blog.golang.org/go-maps-in-action)
+
 [Doubly Linked List](https://en.wikipedia.org/wiki/Doubly_linked_list)
+
+[Package list](https://golang.org/pkg/container/list/)
 
 ## Pre-commit
 

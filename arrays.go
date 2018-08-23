@@ -315,6 +315,7 @@ func main() {
 	removeNode(&list, &nodeToRemove)
 	p("First after : ", list.First.Data)
 
+	// TODO: Go has linked list implemented https://golang.org/pkg/container/list/
 }
 
 func arrayMedian(a []float64) float64 {
