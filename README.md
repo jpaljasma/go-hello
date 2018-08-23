@@ -44,6 +44,11 @@ We also do some fun like calculating prime numbers, and some stats like mean and
 
 `go run arrays.go`
 
+### References
+
+[Go Maps in Action](https://blog.golang.org/go-maps-in-action)
+[Doubly Linked List](https://en.wikipedia.org/wiki/Doubly_linked_list)
+
 ## Pre-commit
 
 ### Format all go files

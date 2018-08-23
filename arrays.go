@@ -183,7 +183,138 @@ func main() {
 		p("Fish key does not exist")
 	}
 
-	// TODO: https://blog.golang.org/go-maps-in-action
+	// if requested key does not exist, we get that value type's zero value
+	jz := zz["baz"]
+
+	p("no key:", 0 == jz)
+
+	// len() returns number of items in map
+	p("len:", len(zz))
+
+	// Exploiting zero values
+	// @see https://blog.golang.org/go-maps-in-action#TOC_4.
+	// @see https://en.wikipedia.org/wiki/Doubly_linked_list
+	// Doubly Linked List Node
+	type Node struct {
+		Next 	*Node	// A reference to the next node
+		Prev	*Node	// A reference to the previous node
+		Data 	interface{}		// Data or a reference to data
+	}
+
+	type DoublyLinkedList struct {
+		First	*Node	// points to first node of list
+		Last 	*Node	// points to last node of list
+	}
+
+	var insertAfter = func(list *DoublyLinkedList, node *Node, newNode *Node) {
+		newNode.Prev = node
+		if nil == node.Next {
+			newNode.Next = nil
+			list.Last = newNode
+		} else {
+			newNode.Next = node.Next
+			node.Next.Prev = newNode
+		}
+		node.Next = newNode
+	}
+
+	var insertBefore = func(list *DoublyLinkedList, node *Node, newNode *Node) {
+		newNode.Next = node
+		if nil == node.Prev {
+			newNode.Prev = nil
+			list.First = newNode
+		} else {
+			newNode.Prev = node.Prev
+			node.Prev.Next = newNode
+		}
+		node.Prev = newNode
+	}
+
+	var insertBeginning = func(list *DoublyLinkedList, newNode *Node) {
+		if nil == list.First {
+			list.First = newNode
+			list.Last  = newNode
+			newNode.Prev = nil
+			newNode.Next = nil
+		} else {
+			insertBefore(list, list.First, newNode)
+		}
+	}
+
+	var insertEnd = func(list *DoublyLinkedList, newNode *Node) {
+		if nil == list.Last {
+			insertBeginning(list, newNode)
+		} else {
+			insertAfter(list, list.Last, newNode)
+		}
+	}
+
+	// Removal of a node requires special handling if the node to be removed is the firstNode or lastNode:
+	var removeNode = func(list *DoublyLinkedList, node *Node) {
+		if nil == node.Prev {
+			list.First = node.Next
+		} else {
+			node.Prev.Next = node.Next
+		}
+
+		if nil == node.Next {
+			list.Last = node.Prev
+		} else {
+			node.Next.Prev = node.Prev
+		}
+	}
+
+	var list = DoublyLinkedList{}
+
+	insertEnd(&list, &Node{ Data: "Agent" })
+	insertEnd(&list, &Node{ Data: "007" })
+	insertEnd(&list, &Node{ Data: "Bond" })
+
+	// we will use remove method
+	nodeToRemove := Node{ Data: "James" }
+	insertBeginning(&list, &nodeToRemove)
+
+	// TODO: https://www.geeksforgeeks.org/detect-and-remove-loop-in-a-linked-list/
+	//insertEnd(&list, &nodeToRemove)
+
+	p("First: ", list.First.Data)
+	p("Last:  ", list.Last.Data)
+
+	p()
+	p("Forward")
+
+	visited := make(map[*Node]bool)
+
+	// Traversing forward
+	node := list.First
+	for nil != node {
+		if visited[node] {
+			p("Cycle detected:", node)
+			break
+		}
+		visited[node] = true
+		// do something with node.Data
+		p("Node: ", node.Data)
+		node = node.Next
+	}
+
+	p()
+	p("Backwards")
+	// Traversing backward
+	node = list.Last
+	for nil != node {
+		// do something with node.Data
+		p("Node: ", node.Data)
+		node = node.Prev
+	}
+
+	p()
+	p("Removal")
+	// removal
+	p("First before: ", list.First.Data)
+	removeNode(&list, &nodeToRemove)
+	p("First after : ", list.First.Data)
+
 }
 
 func arrayMedian(a []float64) float64 {
