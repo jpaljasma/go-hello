@@ -36,10 +36,11 @@ There is no [ternary if](https://en.wikipedia.org/wiki/%3F:) `?:` in go
 
 `go run switch.go`
 
-## Arrays
+## Arrays, Slices and Maps
 
-Closer look at the Arrays in Golang, + some of the internals like array cap, make, and append.
-Calculating prime numbers. Some stats like mean, median.
+Closer look at the **Arrays**, **Slices** and **Maps** in Golang, + work on some internals like reflecting types,
+slice `cap` property & helper methods like `make` and `append`.
+We also do some fun like calculating prime numbers, and some stats like mean and median.
 
 `go run arrays.go`
 

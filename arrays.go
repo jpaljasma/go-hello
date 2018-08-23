@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"reflect"
 	"sort"
 	"time"
 )
@@ -16,6 +17,10 @@ func main() {
 	var a [5]int
 
 	p := fmt.Println
+	lpf := log.Printf
+
+	// type is array
+	p("typ: ", reflect.TypeOf(a).Kind())
 
 	p("emp: ", a)
 	p("len: ", len(a))
@@ -56,29 +61,33 @@ func main() {
 
 	p("3d:", threeD)
 
+	// SLICES
 	// Go arrays are fixed in size, but thanks to the builtin append method, we get dynamic behavior.
 	p()
 
 	x := []int{0, 1, 2, 3, 4}
 	x = append(x, 5)
 
+	// type is slice
+	p("typ: ", reflect.TypeOf(x).Kind())
+
 	p(x, "len:", len(x), "cap:", cap(x))
 
-	// makes an empty array of 4 elements with 0 as a value
+	// makes an empty slice of 4 elements with 0 as a value
 	x = make([]int, 4)
 	p(x, "len:", len(x), "cap:", cap(x))
 
-	// create an empty array with 0 length and capacity of 4
+	// create an empty slice with 0 length and capacity of 4
 	x = make([]int, 0, 4)
-	// empty array, length = 0 cap = 4
+	// empty slice, length = 0 cap = 4
 	p(x, "len:", len(x), "cap:", cap(x))
 
 	// append 5 elements, length = 5 cap = 8 (doubled)
 	x = append(x, 5, 6, 7, 8, 9)
 	p(x, "len:", len(x), "cap:", cap(x))
-	fmt.Println("")
+	p()
 
-	// primes
+	// calculating primes
 	nPrimeLoop := 10000
 
 	start := time.Now()
@@ -88,7 +97,7 @@ func main() {
 		}
 	}
 	elapsed := time.Since(start)
-	log.Printf("Primes (linear) took %s", elapsed)
+	lpf("Primes (linear) took %s", elapsed)
 
 	start = time.Now()
 	for i := 1; i <= nPrimeLoop; i++ {
@@ -96,22 +105,23 @@ func main() {
 			//fmt.Printf("%v ", i)
 		}
 	}
-	fmt.Println("")
+	p()
 	elapsed = time.Since(start)
-	log.Printf("Primes (sqrt) took %s", elapsed)
+	lpf("Primes (sqrt) took %s", elapsed)
 
 	start = time.Now()
 	primes := SieveOfEratosthenes(nPrimeLoop)
 	elapsed = time.Since(start)
-	log.Printf("Primes (SieveOfEratosthenes) took %s", elapsed)
+	lpf("Primes (SieveOfEratosthenes) took %s", elapsed)
 
-	fmt.Println(len(primes), "primes found")
+	p(len(primes), "primes found")
 
+	// underscore (_) means yea, it's a variable but I dont need it so ignore it
 	for _, v := range primes {
 		fmt.Print(v, " ")
 	}
 
-	fmt.Println()
+	p()
 
 	a2 := []float64{1.99, 1, 2, 7, 3, -2, 4, 5, 6.789}
 	a3 := []float64{5, 11, 12, 4, 8, 21}
@@ -126,6 +136,54 @@ func main() {
 	p("median", a4, arrayMedian(a4))
 	p("median", a5, arrayMedian(a5))
 
+	// Maps are like associative arrays in PHP but strong typed
+	z := map[string]float64{
+		"fish":    23.985,
+		"chips":   11.0,
+		"burgers": 8.95,
+	}
+
+	for key, value := range z {
+		p(fmt.Sprintf("%s costs $%.2f", key, value))
+	}
+
+	// Iteration order: keys are not guaranteed to be sorted
+	// we would have to create a separate sorted slice of keys
+	var keys = make([]string, len(z), len(z))
+	i := 0
+	for k := range z {
+		keys[i] = k
+		i++
+	}
+	p("orig:  ", keys)
+	sort.Strings(keys)
+	p("sorted:", keys)
+	// <T>sAreSorted()
+	p("Keys are sorted: ", sort.StringsAreSorted(keys))
+
+	cartTotal := 0.0
+	for i := range keys {
+		cartTotal += z[keys[i]]
+		p(fmt.Sprintf("%s costs $%.2f", keys[i], z[keys[i]]))
+	}
+
+	p(fmt.Sprintf("Cart total: $%.2f", cartTotal))
+	p()
+
+	// deleting a key from map
+	zz := z
+	zz["route"] = 66
+
+	delete(zz, "fish")
+	p(zz)
+
+	// test a key without retrieving a value
+	_, ok := zz["fish"]
+	if !ok {
+		p("Fish key does not exist")
+	}
+
+	// TODO: https://blog.golang.org/go-maps-in-action
 }
 
 func arrayMedian(a []float64) float64 {
