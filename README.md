@@ -54,6 +54,10 @@ Regular functions, Recursive, Variadic, Closures. Fibonacci implementations (rec
  
 `go run functions.go`
 
+## Panic & Recover
+
+`go run panic.go`
+
 ### References
 
 [Go Maps in Action](https://blog.golang.org/go-maps-in-action)
