@@ -44,6 +44,16 @@ We also do some fun like calculating prime numbers, and some stats like mean and
 
 `go run arrays.go`
 
+## Range
+
+`go run range.go`
+
+## Functions
+
+Regular functions, Recursive, Variadic, Closures. Fibonacci implementations (recursive & linear).
+ 
+`go run functions.go`
+
 ### References
 
 [Go Maps in Action](https://blog.golang.org/go-maps-in-action)
@@ -62,3 +72,5 @@ We also do some fun like calculating prime numbers, and some stats like mean and
 [Go By Example](https://www.gobyexample.com)
 
 [A Tour of Go](https://tour.golang.org/welcome/1)
+
+[Golang Tutorial Series](https://golangbot.com/learn-golang-series/)

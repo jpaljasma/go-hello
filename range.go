@@ -39,5 +39,5 @@ func main() {
 	for i, c := range "🍌🍆🍒🍑💩¯\\_(ツ)_/¯" {
 		fmt.Println(i, c)
 	}
-	
+
 }
