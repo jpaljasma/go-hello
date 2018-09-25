@@ -66,6 +66,10 @@ Regular functions, Recursive, Variadic, Closures. Fibonacci implementations (rec
 
 `go run panic.go`
 
+## Pointers
+
+`go run pointers.go`
+
 ## Pre-commit
 
 ### Format all go files
