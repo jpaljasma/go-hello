@@ -8,35 +8,35 @@ A simple introduction to Go. Creates a web server in port 8080. Does some header
 
 Then open http://localhost:8080 to see the output
 
-## Values
+## 1. Values
 
 Outputting values of different types, working with Slices, aliasing functions.
 
 `go run values.go`
 
-## Variables
+## 2. Variables
 
 `go run variables.go`
 
-## Constants
+## 3. Constants
 
 `go run constants.go`
 
-## Loops
+## 4. Loops
 
 `go run loops.go`
 
-## If-Else
+## 5. If-Else
 
 `go run if-else.go`
 
 There is no [ternary if](https://en.wikipedia.org/wiki/%3F:) `?:` in go
 
-## Switch
+## 6. Switch
 
 `go run switch.go`
 
-## Arrays, Slices and Maps
+## 7. Arrays, Slices and Maps
 
 Closer look at the **Arrays**, **Slices** and **Maps** in Golang, + work on some internals like reflecting types,
 slice `cap` property & helper methods like `make` and `append`.
@@ -52,23 +52,25 @@ We also do some fun like calculating prime numbers, and some stats like mean and
 
 [Package list](https://golang.org/pkg/container/list/)
 
-## Range
+## 8. Range
 
 `go run range.go`
 
-## Functions
+## 9. Functions
 
 Regular functions, Recursive, Variadic, Closures. Fibonacci implementations (recursive & linear).
  
 `go run functions.go`
 
-## Panic & Recover
+## 10. Panic & Recover
 
 `go run panic.go`
 
-## Pointers
+## 11. Pointers
 
 `go run pointers.go`
+
+---
 
 ## Pre-commit
 
