@@ -70,6 +70,10 @@ Regular functions, Recursive, Variadic, Closures. Fibonacci implementations (rec
 
 `go run pointers.go`
 
+## 12. Structs
+
+`go run structs.go`
+
 ---
 
 ## Pre-commit
